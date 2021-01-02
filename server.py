@@ -136,7 +136,7 @@ def processData(row, cust_dict):
 
 def prepareData(body):
 	if not "customer_code" or len(body["customer_code"]) == 0:
-		abort(400, description="customer code must be provided")
+		abort(jsonify({'code':422, 'message':"customer code must be provided"}))
 	skeleton = OrderedDict([('fecha_dato', '2016-06-28'), ('ncodpers', ''), ('ind_empleado', ''), ('pais_residencia', ''), ('sexo', ''), ('age', ''), ('fecha_alta', ''), ('ind_nuevo', ''), ('antiguedad', ''), ('indrel', ' '), ('ult_fec_cli_1t', ''), ('indrel_1mes', ''), ('tiprel_1mes', ''), ('indresi', ''), ('indext', ''), ('conyuemp', ''), ('canal_entrada', ''), ('indfall', ''), ('tipodom', ''), ('cod_prov', ''), ('nomprov', ''), ('ind_actividad_cliente', ''), ('renta', ''), ('segmento', '')])	
 	if "customer_code" in body:
 		skeleton['ncodpers'] = body["customer_code"]
@@ -169,7 +169,7 @@ def predict(data):
 	# target_cols = target_cols[2:]
 	target_cols = np.array(target_cols)
 	final_preds = [" ".join(list(target_cols[pred])) for pred in preds]
-	return jsonify(final_preds[0].split(" "))
+	return jsonify({'code':200, 'products':final_preds[0].split(" ")})
 
 @app.route('/api/', methods=['POST'])
 def makecalc():
