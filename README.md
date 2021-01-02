@@ -26,4 +26,22 @@
   -   activity_index: optional, possible values: '1' (active customer) or '0' (inactive customer)
   -   gross_income: optional, range: 0-1500000
   -   segmentation: optional, possible values: '1' (VIP), '2' (Individuals), '3' (college graduated)
+- **Sample Response**
+    {
+    "code": 200,
+    "products": [
+      "Saving_Account",
+      "Particular_Account",
+      "Payroll",
+      "Short_term_deposits",
+      "Securities",
+      "Home_Account",
+      "Payroll_Account"
+    ]
+   }
+ - **Sample Error Response**
+    {
+  "code": 422,
+  "message": "customer code must be provided"
+  }
 
